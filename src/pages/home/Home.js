@@ -1,23 +1,26 @@
 import React, { useEffect, useState } from "react";
+
+//components
 import Searchbar from "../../components/Searchbar";
 import Weather from "../../components/Weather";
-import Quote from "../../components/Quote"
+import Quote from "../../components/Quote";
 
 export default function Home() {
   const [loading, setIsLoading] = useState(false);
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
-  const [quote, setQuote] = useState()
+  const [quote, setQuote] = useState();
 
   const coordinateUrl =
     "http://api.openweathermap.org/geo/1.0/zip?zip=80919,US&appid=0a430b4c9cea94f2ec8d3907dec15777";
 
-  const quoteUrl = "https://type.fit/api/quotes"
+  const quoteUrl = "https://type.fit/api/quotes";
 
   // http://api.openweathermap.org/geo/1.0/zip?zip={zip code},{country code}&appid={API key}
 
   //weather api 0a430b4c9cea94f2ec8d3907dec15777
 
+  //fetch lat and lon for zipcode converstion
   useEffect(() => {
     const fetchCoordinates = async () => {
       setIsLoading(true);
@@ -38,24 +41,22 @@ export default function Home() {
     fetchCoordinates();
   }, []);
 
-
+  //fetch quotes 
   useEffect(() => {
     const fetchQuote = async () => {
-        try {
-            const response = await fetch(quoteUrl);
-            if (response.status === 200) {
-                const jsonResponse = await response.json()
-                setQuote(jsonResponse)
-            }
-        } catch (error) {
-            console.log(error)
+      try {
+        const response = await fetch(quoteUrl);
+        if (response.status === 200) {
+          const jsonResponse = await response.json();
+          setQuote(jsonResponse);
         }
-    }
-    fetchQuote()
-  }, [])
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchQuote();
+  }, []);
 
-
-  
   return (
     <main>
       <Weather lat={latitude} lon={longitude} />
@@ -63,13 +64,12 @@ export default function Home() {
       {/* holds search and todos */}
       <div className="font-body flex flex-col items-center my-40">
         <Searchbar />
-        {/* holds todos */}
       </div>
 
       {/* holds quotes ... do as a component?*/}
-      {quote && <Quote quote = {quote[Math.floor(Math.random() * quote.length)]}/> }
+      {quote && (
+        <Quote quote={quote[Math.floor(Math.random() * quote.length)]} />
+      )}
     </main>
   );
 }
-
-
