@@ -41,7 +41,7 @@ export default function Weather({ lat, lon }) {
           <div className="flex flex-col justify-center">
             <p className="text-3xl">
               {weather.main.temp.toFixed(1)}
-              <i class=" pl-1 fa-regular fas fa-temperature-three-quarters"></i>
+              <i className=" pl-1 fa-regular fas fa-temperature-three-quarters"></i>
             </p>
             <p>{weather.weather[0].description}</p>
           </div>
