@@ -1,32 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
+  const [toggle, setToggle] = useState(false);
+
   return (
-    <div>
-      <div>
+    // <div className="font-body flex">
+      <div className=" font-body flex w-full ">
         <p> image here</p>
         {/* <Avatar src={user.photoURL} /> */}
         {/* <p>Hey {user.displayName}</p>   */}
-        <p>Hey Kelli</p>
-      </div>
 
-      <nav>
-        <ul>
-          <li>
-            {/* <NavLink exact to="/account"> */}
-            <i></i>
-            <span>Account Settings</span>
-            <i className="fa-duotone fas fa-user-gear"></i>
-            {/* </NavLink> */}
-          </li>
-          <li>
-            <span>Logout</span>
-            <i className="fa-light fas fa-right-from-bracket"></i>
-          </li>
-        </ul>
-      </nav>
-    </div>
+        <div className="px-4 cursor-pointer flex items-start flex-col">
+          <p>
+            Hey Kelli
+            {/* change icon depending on whether menu is open or closed */}
+            {!toggle ? (
+              <button onClick={() => setToggle(true)}>
+                <i className="fa-solid fa-caret-down px-2"></i>
+              </button>
+            ) : (
+              <button onClick={() => setToggle(false)}>
+                <i className="fa-solid fa-caret-up px-2"></i>
+              </button>
+            )}
+          </p>
+        
+    {/* conditionally show menu links */}
+        {toggle && (
+          
+            <nav className = "flex flex-col items-start">
+              <a>
+                {/* <NavLink exact to="/account"> */}
+                Account Settings
+                <i className="fa-duotone fas fa-user-gear px-2"></i>
+                {/* </NavLink> */}
+              </a>
+              <a>
+                Logout
+                <i className="fa-light fas fa-right-from-bracket px-2"></i>
+              </a>
+            </nav>
+         
+        )}
+        </div>
+      </div>
+    // </div>
   );
 }
 
