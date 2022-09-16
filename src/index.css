@@ -8,3 +8,13 @@
 .App {
  height: 100%;
 }
+
+.inputs{
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: #777;
+    font-size: 1em;
+    padding: 8px 6px;
+    width: 100%;
+}
