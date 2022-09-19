@@ -32,7 +32,7 @@ export const useSignup = () => {
       
       const snapShot = await uploadBytes(storageRef, thumbnail);
       const imgUrl = await getDownloadURL(ref(storage, storageRef));
-      await updateProfile(user, { displayName, zip, photoURL: imgUrl });
+      await updateProfile(user, { displayName, uid: user.uid, zip, photoURL: imgUrl });
  
       //create a user document
       const usersCollectionRef = doc(database, 'users', res.user.uid)
@@ -40,6 +40,7 @@ export const useSignup = () => {
         online: true,
         displayName,
         zip,
+        uid:user.uid,
         photoURL: imgUrl,
       });
  
