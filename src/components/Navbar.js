@@ -1,19 +1,24 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
+
+import { useAuthContext } from "../hooks/useAuthContext";
+import Avatar from "./Avatar";
+
 export default function Navbar() {
   const [toggle, setToggle] = useState(false);
+  const { user } = useAuthContext()
+  
 
   return (
     // <div className="font-body flex">
       <div className=" font-body flex w-full ">
-        <p> image here</p>
-        {/* <Avatar src={user.photoURL} /> */}
-        {/* <p>Hey {user.displayName}</p>   */}
+        
+         <Avatar src={user.photoURL != null? user.photoURL : <i class="fa-light fas fa-user"></i>} />
 
         <div className="px-4 cursor-pointer flex items-start flex-col">
           <p>
-            Hey Kelli
+          Hey {user.displayName}
             {/* change icon depending on whether menu is open or closed */}
             {!toggle ? (
               <button onClick={() => setToggle(true)}>
