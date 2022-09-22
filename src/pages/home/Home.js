@@ -24,7 +24,8 @@ export default function Home() {
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
   const [quote, setQuote] = useState();
-  const [zipcode, setZipcode] = useState(99703)
+  const [zipcode, setZipcode] = useState(99703);
+  const [weather, setWeather] = useState();
   const [index, setIndex] = useState(0);
   const [images, setImages] = useState([
     img1,
@@ -36,23 +37,15 @@ export default function Home() {
     img7,
     img8,
   ]);
- const { user } = useAuthContext()
- const { documents, zip } =  useCollection(
-    'users',
-    ['uid', '==', user.uid]
-    )
+  const { user } = useAuthContext();
+  const { documents } = useCollection("users", ["uid", "==", user.uid]);
 
+  // update zipcode; check for documents and make sure that documents doesn't return as "undefined"
+  useMemo(() => {
+    const newZip = documents && documents[0].zip ? documents[0].zip : null;
+    setZipcode(newZip);
+  }, [documents, user]);
 
-// let newZip = documents.map(document => document.zip)
-
-  const coordinateUrl =
-    `http://api.openweathermap.org/geo/1.0/zip?zip=${zip},US&appid=0a430b4c9cea94f2ec8d3907dec15777`;
-
-  const quoteUrl = "https://type.fit/api/quotes";
-
-  //weather api 0a430b4c9cea94f2ec8d3907dec15777
-
- 
 
   //handle next button click on background image
   const handleRight = (e) => {
@@ -75,30 +68,55 @@ export default function Home() {
     }
   };
 
- //fetch lat and lon for zipcode conversion
+ 
   useEffect(() => {
     const fetchCoordinates = async () => {
+      //api endpoint to use zip to get lat and lon
+      const coordinateUrl = `http://api.openweathermap.org/geo/1.0/zip?zip=${zipcode},US&appid=0a430b4c9cea94f2ec8d3907dec15777`;
       setIsLoading(true);
+
+       //fetch lat and lon for zipcode conversion
       try {
         const response = await fetch(coordinateUrl);
         if (response.status === 200) {
           const jsonResponse = await response.json();
-          console.log(jsonResponse.lat);
+        
           setLatitude(jsonResponse.lat);
           setLongitude(jsonResponse.lon);
+          
+          setIsLoading(false);
         }
+        
+
+      } catch (error) {
+        console.log(error);
         setIsLoading(false);
+      }
+       //use latitude and longitude to get weather
+      try {
+        const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=0a430b4c9cea94f2ec8d3907dec15777&units=imperial`;
+        console.log(weatherUrl);
+        const response = await fetch(weatherUrl);
+        if (response.status === 200) {
+          const jsonResponse = await response.json();
+
+          setWeather(jsonResponse);
+
+          setIsLoading(false);
+        }
       } catch (error) {
         console.log(error);
         setIsLoading(false);
       }
     };
     fetchCoordinates();
-  }, []);
+  }, [zipcode, latitude, longitude]);
 
   //fetch quotes
   useEffect(() => {
     const fetchQuote = async () => {
+      //endpoint for quote API
+      const quoteUrl = "https://type.fit/api/quotes";
       try {
         const response = await fetch(quoteUrl);
         if (response.status === 200) {
@@ -119,25 +137,21 @@ export default function Home() {
         src={images[index]}
       />
       <Navbar />
-      <Weather 
-        lat={latitude} 
-        lon={longitude} 
-        />
+      <Weather
+        weather={weather}
+      />
 
       {/* holds search and todos */}
       <div className="font-body flex flex-col items-center my-40">
-        <Searchbar 
-          handleRight={handleRight} 
-          handleLeft={handleLeft} 
-          />
+        <Searchbar handleRight={handleRight} handleLeft={handleLeft} />
       </div>
 
-      {/* holds quotes ... do as a component?*/}
+      {/* holds quotes*/}
+      <div className= "flex justify-center">
       {quote && (
-        <Quote 
-          quote={quote[Math.floor(Math.random() * quote.length)]} 
-          />
+        <Quote quote={quote[Math.floor(Math.random() * quote.length)]} />
       )}
+      </div>
     </main>
   );
 }
