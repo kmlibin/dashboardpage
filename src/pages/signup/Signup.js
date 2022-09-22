@@ -1,22 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 import { useSignup } from "../../hooks/useSignup";
 
 export default function Signup() {
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
-  const [thumbnail, setThumbnail] = useState(null);
+  const [thumbnail, setThumbnail] = useState('');
   const [thumbError, setThumbError] = useState(null);
   const [zip, setZip] = useState("");
   const { signup, isLoading, error } = useSignup();
 
+
   const handleSubmit = (e) => {
+    console.log(e)
     e.preventDefault();
     signup(email, password, displayName, zip, thumbnail);
   };
 
+  
+  
   const handleFileChange = (e) => {
+    console.log(e)
     setThumbnail(null);
     let selected = e.target.files[0];
 
