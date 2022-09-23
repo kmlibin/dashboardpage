@@ -1,44 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 
-export default function Weather({ lat, lon }) {
+export default function Weather({ weather}) {
   const [loading, setIsLoading] = useState(false);
-  const [weather, setWeather] = useState();
 
-  const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=0a430b4c9cea94f2ec8d3907dec15777&units=imperial`;
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-
-      try {
-        const response = await fetch(weatherUrl);
-        if (response.status === 200) {
-          const jsonResponse = await response.json();
-
-          console.log(jsonResponse);
-          setIsLoading(false);
-
-          setWeather(jsonResponse);
-        }
-      } catch (error) {
-        console.log(error);
-        setIsLoading(false);
-      }
-    };
-    fetchData();
-  }, [weatherUrl]);
-
-  //   const weatherIcon = `http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`;
 
   return (
-    <div className="font-body w-full">
+    <div className="font-body w-full flex justify-end ">
       {weather && (
-        <div className="flex animate-fade-in">
+        <div className="text-black flex animate-fade-in bg-grey-rgba rounded-lg mt-[10%] mx-2">
           <img
             className="min-w-[10%]"
             src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
           />
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-center pr-5">
             <p className="text-3xl">
               {weather.main.temp.toFixed(1)}
               <i className=" pl-1 fa-regular fas fa-temperature-three-quarters"></i>
