@@ -10,13 +10,22 @@ module.exports = {
         body: ['Montserrat']
       },
       animation: {
-        "fade-in": "fadeIn 0.5s ease-in-out"
+        "fade-in": "fadeIn 0.5s ease-in-out",
+        
+      },
+      colors: {
+        'grey-rgba': 'rgba(209, 213, 219, 0.54)',
+      },
+      boxShadow: {
+        'standard': '0 2px 4px rgba(0, 0, 0, 0.54)',
+        'light':'0 0 2px',
       },
       keyframes: () => ({
         fadeIn: {
           "0%": { opacity: 0 },
           "100%": { opacity: 1 }
-        }
+        },
+  
       })
     },
   },
