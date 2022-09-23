@@ -10,12 +10,12 @@ export default function Navbar() {
   const [toggle, setToggle] = useState(false);
   const { user } = useAuthContext()
   const {logout} = useLogout()
-  
+  // shadow-[inset_0_0_8px_rgba(31,41,55,.75)]
 
   return (
  
-  <div className="font-body  bg-black opacity-75 border-gray-300 border-2 rounded w-1/5 flex flex-col absolute top-2 left-2">
-    <div className="w-full flex">
+  <div className="font-body rounded-lg w-1/5 flex flex-col absolute top-2 left-2 shadow-standard active:shadow-light active:translate-y-1">
+    <div className="w-full flex  ">
        <div className="w-1/3">
         <Avatar src={user.photoURL.includes('undefined')? 'https://cdn.pixabay.com/photo/2012/04/26/19/43/profile-42914_960_720.png' : user.photoURL} />
        </div>
@@ -36,21 +36,21 @@ export default function Navbar() {
               </button>
             )}
           </p>
-          
+          {/* ransition: transform .3s ease-in-out; */}
 </div></div>
     {/* conditionally show menu links */}
         {toggle && (
       // "flex flex-col items-start left-12 ml-9 top-12 absolute bg-grey text-white px-3 pb-3"   
-      <div className ="w-full">
-            <nav className = "text-xs text-white list-none text-right border-t-2 p-2">
-             
-              <li className= "pt-2"><a>
+      <div className ="w-full animate-fade-in">
+            <nav className = "cursor-pointer text-xs text-white list-none text-right border-t-2 p-2 w-full relative">
+             <a className="animate-fade-in relative w-full text-xs w-full h-full transform transition-all hover:text-black duration-500">
+              <li className= "pt-2 relative">
                 {/* <NavLink exact to="/account"> */}
                 Account Settings
                 <i className="fa-duotone fas fa-user-gear px-2"></i>
                 {/* </NavLink> */}
-              </a></li>
-              <li className="pt-1"><button onClick = {logout}>
+              </li></a>
+              <li className="animate-fade-in pt-1 transform transition-all hover:text-black duration-500"><button onClick = {logout}>
                 Logout
                 <i className="fa-light fas fa-right-from-bracket px-2"></i>
               </button>

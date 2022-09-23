@@ -3,8 +3,8 @@ import React from 'react'
 export default function Quote({quote}) {
    
   return (
-    <div className= "animate-fade-in w-2/3 rounded p-5 my-10 font-medium bg-gray-300 opacity-60">
-        <p className= "text-xl">{quote.text}</p>
+    <div className= "animate-fade-in w-2/3 rounded-lg p-5 my-10 font-medium bg-grey-rgba">
+        <p className= "text-xl mb-1">{quote.text}</p>
         {quote.author? <p className="text-m italic">- {quote.author}</p> : <p className= "text-m italic">- Someone Wise</p>}
     </div>
   )
