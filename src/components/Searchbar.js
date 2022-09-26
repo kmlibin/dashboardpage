@@ -1,69 +1,63 @@
 import React, { useState } from "react";
+import Todos from "./Todos";
 
 //still delete/mark as complete for todos
-export default function Searchbar({ handleRight, handleLeft, color}) {
+export default function Searchbar({ handleRight, handleLeft }) {
   const [todo, setTodo] = useState("");
   const [todos, setTodos] = useState([]);
-console.log(color)
+
+  const colors = ["rgba(125,211,252, .8)", "rgba(147,197,253,.8)", "rgba(165,180,252,.8)", "rgba(196,181,253,.8)"];
+  let i = Math.floor(Math.random() * 5);
+
   const addTodo = (e) => {
     e.preventDefault();
     if (todo !== "") {
       setTodos([...todos, todo]);
       setTodo("");
-      
     }
   };
 
   const handleDelete = (text) => {
-    const newTodos = todos.filter(todo => todo !== text)
-    setTodos(newTodos)
-  }
+    const newTodos = todos.filter((todo) => todo !== text);
+    setTodos(newTodos);
+  };
 
   const handleComplete = (text) => {
-    const newTodos = todos.filter(todo => todo !== text)
-    setTodos(newTodos)
-  }
+    const newTodos = todos.filter((todo) => todo !== text);
+    setTodos(newTodos);
+  };
   return (
     <div className="flex w-full justify-center h-full">
       <button className="text-white w-1/5 pr-5 text-3xl" onClick={handleLeft}>
         <i className="fas fa-solid fa-backward-step shadow-standard rounded-lg p-4 active:shadow-light active:translate-y-1 transition-all ease-in duration-100 hover:shadow-[inset_0_0_10px_white] active:shadow-light active:translate-y-1"></i>
       </button>
-      <div className="w-2/3 flex flex-col items-center bg-grey-rgba rounded animate-fade-in">
+
+      <div className="w-2/3 flex flex-col items-center bg-grey-rgba rounded-lg animate-fade-in shadow-equal">
         <h2 className="text-5xl p-5">What are your goals for today?</h2>
-        <form className="p-5 w-full">
+        <form className="p-5 min-w-full" onClick={addTodo}>
           <input
-            className=" w-3/5 rounded-lg border p-2 text-grey-darkest bg-white"
+            className="focus:outline-0 w-3/5 p-2 text-grey-darkest bg-transparent border-b-2 border-b-#f9fafb "
             type="text"
             name="todo"
             value={todo}
-            // ref={placeholder}
-            placeholder="what do you need to do today?"
             onChange={(e) => setTodo(e.target.value)}
           />
-          <button className="bg-white ml-1 py-2 px-2 rounded-lg shadow-[inset_0_0_0_black] active:shadow-[inset_400px_0_0_0_black] transition ease-in duration-1" onClick={addTodo}>Add</button>
+  
+          <button className="bg-transparent border-gray-200 border-2 ml-1 py-2 px-2 rounded-lg shadow-[inset_0_0_0_rgba(14,165,233,.75)] active:shadow-[inset_400px_0_0_0_rgba(14,165,233,.75)] hover:border-sky-600 transition ease-in duration-1 ">
+            Add
+          </button>
         </form>
-        {/* <i className="fa-light fas fa-down-to-dotted-line"></i> */}
-        <div className="flex w-full justify-start tracking-wider flex-wrap">
-          {todos.map((todo, index) => (
-            <div
-              className="mx-1 mb-2 font-todo p-2 text-3xl"
-              style={{
-                backgroundColor: {color},
-                border: "2px solid rgba(201, 198, 198, 0.3)",
-              }}
-              key={index}
-            >
-              {todo}
+        
 
-              <i
-                onClick={() => handleDelete(todo)}
-                className="cursor-pointer text-[1.15rem] fas fa-solid fa-circle-minus absolute text-red-500 -translate-x-6 -translate-y-4 transform transition-all hover:scale-150 hover:text-red-700"
-              ></i>
-              <i
-                onClick={() => handleComplete(todo)}
-                className="cursor-pointer text-[1.15rem] fas fa-solid fa-circle-check absolute  text-emerald-500 -translate-y-4 transform transition-all hover:scale-150 hover:text-emerald-700"
-              ></i>
-            </div>
+        <div className="flex w-full justify-start flex-wrap">
+          {todos.map((todo, index) => (
+            <Todos
+              index={index}
+              todo={todo}
+              color={colors[index % 4]}
+              handleComplete={handleComplete}
+              handleDelete={handleDelete}
+            />
           ))}
         </div>
       </div>
