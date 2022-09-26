@@ -12,26 +12,10 @@ import "./App.css";
 import { useAuthContext } from "./hooks/useAuthContext";
 import { useCollection} from"./hooks/useCollection"
 
-// const img1 = require("../src/images/img1.jpg");
-// const img2 = require("../src/images/img2.jpg");
-// const img3 = require("../src/images/img3.jpg");
-// const img4 = require("../src/images/img4.jpg");
-// const img5 = require("../src/images/img5.jpg");
-// const img6 = require("../src/images/img6.jpg");
-// const img7 = require("../src/images/img7.jpg");
-// const img8 = require("../src/images/img8.jpg");
+
 
 function App() {
-  // const [images, setImages] = useState([
-  //   img1,
-  //   img2,
-  //   img3,
-  //   img4,
-  //   img5,
-  //   img6,
-  //   img7,
-  //   img8,
-  // ]);
+
   const [index, setIndex] = useState(0);
   const { user, authIsReady } = useAuthContext();
   
