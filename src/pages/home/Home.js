@@ -130,10 +130,11 @@ export default function Home() {
     fetchQuote();
   }, []);
 
+ 
   return (
     <main className="min-h-full min-w-full">
       <img
-        className="-z-10 absolute min-w-full min-h-full"
+        className="-z-10 absolute min-w-full min-h-full opacity-80"
         src={images[index]}
       />
       <Navbar />
