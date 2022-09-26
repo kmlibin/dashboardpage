@@ -19,6 +19,7 @@ module.exports = {
       boxShadow: {
         'standard': '0 2px 4px rgba(0, 0, 0, 0.54)',
         'light':'0 0 2px',
+        'equal': '0 0 10px -2px rgba(0,0,0,.54)'
       },
       keyframes: () => ({
         fadeIn: {
