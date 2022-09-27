@@ -1,29 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useAuthContext } from "../../hooks/useAuthContext";
-
+import { Link } from "react-router-dom";
 import { useSignup } from "../../hooks/useSignup";
 
 export default function Signup() {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
-  const [thumbnail, setThumbnail] = useState('');
+  const [thumbnail, setThumbnail] = useState("");
   const [thumbError, setThumbError] = useState(null);
   const [zip, setZip] = useState("");
-  const { signup, isLoading, error } = useSignup();
-
+  const { signup, isPending, error } = useSignup();
 
   const handleSubmit = (e) => {
-    console.log(e)
+    console.log(e);
     e.preventDefault();
     signup(email, password, displayName, zip, thumbnail);
   };
 
-  
-  
   const handleFileChange = (e) => {
-    console.log(e)
+    console.log(e);
     setThumbnail(null);
     let selected = e.target.files[0];
 
@@ -39,76 +35,90 @@ export default function Signup() {
     setThumbnail(selected);
   };
 
-  //   .auth-form {
-  //     max-width: 360px;
-  //     margin: 60px auto;
-  //     padding: 40px;
-  //     border: 1px solid #ddd;
-  //     box-shadow: 3px 3px 5px rgba(0,0,0,0.05);
-  //     background: #fff;
-  //   }
-
   return (
-    <form
-      className="flex flex-col max-w-md my-60 mx-auto"
-      onSubmit={handleSubmit}
-    >
-      <h2>Sign Up</h2>
-      <label>
-        <p>email:</p>
-        <input
-          className="inputs"
-          type="email"
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
-          required
-        />
-      </label>
-      <label>
-        <p>password:</p>
-        <input
-          className="inputs"
-          type="password"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          required
-        />
-      </label>
-      <label>
-        <p>display name:</p>
-        <input
-          className="inputs"
-          type="text"
-          value={displayName}
-          onChange={(e) => {
-            setDisplayName(e.target.value);
-          }}
-          required
-        />
-      </label>
-      <label>
-        <p>weather zipcode:</p>
-        <input
-          className="inputs"
-          value={zip}
-          type="text"
-          pattern="[0-9]*"
-          onChange={(e) => {
-            setZip(e.target.value);
-          }}
-          required
-        />
-      </label>
-      <label>
-        <p>profile thumbnail:</p>
-        <input className="inputs" type="file" onChange={handleFileChange} />
-        {thumbError && <div className="error">{thumbError}</div>}
-      </label>
-      {!isLoading && <button>Sign Up</button>}
-      {isLoading && <button disabled>Loading...</button>}
-      {error && <div className="error">{error}</div>}
-    </form>
+    <div className="w-[40%] min-h-[50%] rounded-lg my-40 mx-auto text-gray-700 text-body bg-gradient-to-br from-blue-400 to-purple-800 ">
+      <form
+        className="flex flex-col w-[75%] h-[75%] rounded mx-auto bg-[rgba(156,163,175,.4)] py-14"
+        onSubmit={handleSubmit}
+      >
+        <h2 className="my-4 text-4xl">Sign Up</h2>
+        <label>
+          <p className="text-xl">email:</p>
+          <input
+            className="inputs"
+            type="email"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
+            required
+          />
+        </label>
+        <label>
+          <p className="text-xl">password:</p>
+          <input
+            className="inputs"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          <p className="text-xl">display name:</p>
+          <input
+            className="inputs"
+            type="text"
+            value={displayName}
+            onChange={(e) => {
+              setDisplayName(e.target.value);
+            }}
+            required
+          />
+        </label>
+        <label>
+          <p className="text-xl">weather zipcode:</p>
+          <input
+            className="inputs"
+            value={zip}
+            type="text"
+            pattern="^\d{5}$"
+            onChange={(e) => {
+              setZip(e.target.value);
+            }}
+            required
+          />
+        </label>
+        <label>
+          <p className="text-xl">profile thumbnail:</p>
+          <input
+            className="inputs bg-white"
+            type="file"
+            onChange={handleFileChange}
+          />
+          {thumbError && <div className="error">{thumbError}</div>}
+        </label>
+        {!isPending && (
+          <button className="bg-gray-300 w-1/4 p-3 mx-auto shadow-standard rounded-lg m-4 active:shadow-light active:translate-y-1 transition-all ease-in duration-100 hover:shadow-[inset_0_0_10px_white]">
+            Sign Up
+          </button>
+        )}
+        {isPending && (
+          <button
+            className="bg-gray-300 w-1/4 p-3 mx-auto shadow-standard rounded-lg m-4"
+            disabled
+          >
+            Loading...
+          </button>
+        )}
+        {error && <div className="error">{error}</div>}
+        <p className="mt-5">
+          Already have an account?{" "}
+          <Link to="/login">
+            <span className="font-semibold border-b border-blue-300 hover:text-blue-300">
+              Login here!
+            </span>
+          </Link>
+        </p>
+      </form>
+    </div>
   );
 }
