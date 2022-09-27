@@ -20,7 +20,6 @@ const img7 = require("../../images/img7.jpg");
 const img8 = require("../../images/img8.jpg");
 
 export default function Home() {
-  const [loading, setIsLoading] = useState(false);
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
   const [quote, setQuote] = useState();
@@ -46,7 +45,6 @@ export default function Home() {
     setZipcode(newZip);
   }, [documents, user]);
 
-
   //handle next button click on background image
   const handleRight = (e) => {
     e.preventDefault();
@@ -68,31 +66,24 @@ export default function Home() {
     }
   };
 
- 
   useEffect(() => {
     const fetchCoordinates = async () => {
       //api endpoint to use zip to get lat and lon
       const coordinateUrl = `http://api.openweathermap.org/geo/1.0/zip?zip=${zipcode},US&appid=0a430b4c9cea94f2ec8d3907dec15777`;
-      setIsLoading(true);
 
-       //fetch lat and lon for zipcode conversion
+      //fetch lat and lon for zipcode conversion
       try {
         const response = await fetch(coordinateUrl);
         if (response.status === 200) {
           const jsonResponse = await response.json();
-        
+
           setLatitude(jsonResponse.lat);
           setLongitude(jsonResponse.lon);
-          
-          setIsLoading(false);
         }
-        
-
       } catch (error) {
         console.log(error);
-        setIsLoading(false);
       }
-       //use latitude and longitude to get weather
+      //use latitude and longitude to get weather
       try {
         const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=0a430b4c9cea94f2ec8d3907dec15777&units=imperial`;
         console.log(weatherUrl);
@@ -101,12 +92,9 @@ export default function Home() {
           const jsonResponse = await response.json();
 
           setWeather(jsonResponse);
-
-          setIsLoading(false);
         }
       } catch (error) {
         console.log(error);
-        setIsLoading(false);
       }
     };
     fetchCoordinates();
@@ -130,17 +118,15 @@ export default function Home() {
     fetchQuote();
   }, []);
 
- 
   return (
     <main className="min-h-full min-w-full">
       <img
         className="-z-10 absolute min-w-full min-h-full opacity-80"
         src={images[index]}
       />
-      <Navbar />
-      <Weather
-        weather={weather}
-      />
+      {documents && <Navbar />}
+
+      {weather && <Weather weather={weather} />}
 
       {/* holds search and todos */}
       <div className="font-body flex flex-col items-center my-40">
@@ -148,10 +134,10 @@ export default function Home() {
       </div>
 
       {/* holds quotes*/}
-      <div className= "flex justify-center">
-      {quote && (
-        <Quote quote={quote[Math.floor(Math.random() * quote.length)]} />
-      )}
+      <div className="flex justify-center">
+        {quote && (
+          <Quote quote={quote[Math.floor(Math.random() * quote.length)]} />
+        )}
       </div>
     </main>
   );
