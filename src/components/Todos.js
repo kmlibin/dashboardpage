@@ -1,13 +1,14 @@
-import React, {useState} from 'react'
-import Confetti from 'react-dom-confetti'
+import React, { useState } from "react";
+import Confetti from "react-dom-confetti";
 
-export default function Todos({todo,  color, handleDelete}) {
-const [complete, setComplete] = useState(false)
+export default function Todos({ todo, color, handleDelete }) {
+  const [complete, setComplete] = useState(false);
+  const [finished, setFinished] = useState(false);
 
-const config = {
+  const config = {
     angle: 90,
     spread: 360,
-    startVelocity: 40,
+    startVelocity: 20,
     elementCount: 70,
     dragFriction: 0.12,
     duration: 4000,
@@ -15,31 +16,56 @@ const config = {
     width: "10px",
     height: "10px",
     perspective: "500px",
-    colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"]
-  }
+    colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"],
+  };
 
-console.log(complete)
-  return (
+  return finished ? (
     <div
-          className="mx-1 mb-2 font-todo p-2 text-3xl font-extrabold tracking-widest rounded-lg"
-          style={{
-            backgroundColor: color,
-            border: "2px solid rgba(201, 198, 198, 0.3)",
-          }}
-        >
-          {todo}
-
-          <i
-            onClick={() => handleDelete(todo)}
-            className="cursor-pointer text-[1.15rem] bg-red-700 border-red-700 align-center text-center h-[21px] w-[21px] border-[1px] rounded-2xl fas fa-solid fa-circle-minus absolute text-red-500 -translate-x-6 -translate-y-5 transform transition-all hover:scale-150 hover:text-red-700 hover:bg-transparent hover:border-none"
-          ></i>
-          <i
-            onClick={() => setComplete(!complete)}
-            className="cursor-pointer text-[1.15rem] bg-emerald-700 border-emerald-700 align-center text-center h-[21px] w-[21px] border-[1px] rounded-2xl fas  fa-solid fa-circle-check absolute  text-emerald-500 -translate-y-5 transform transition-all hover:scale-150 hover:text-emerald-700 hover:bg-transparent hover:border-none"
-          ></i>
-          <Confetti active={complete}  config={config}/>
-        </div>
-
-  )
+      className="mx-1 mb-2 mt-1 font-todo p-2 text-3xl font-medium tracking-widest rounded-lg animate-fade-in"
+      style={{
+        backgroundColor: "rgba(156,163,175,.5)",
+        border: "2px solid rgba(201, 198, 198, 0.3)",
+      }}
+    >
+      {todo}
+      <i
+        onClick={() => handleDelete(todo)}
+        className="opacity-80 cursor-pointer text-[1rem] fas fa-solid fa-circle-minus absolute text-[rgba(156,163,175)] -translate-x-5 -translate-y-4 transform transition-all hover:scale-150 hover:text-red-500 hover:opacity-80"
+      ></i>
+      <i
+        onClick={() => {
+          setComplete(false);
+          setFinished(false);
+        }}
+        className="opacity-80 cursor-pointer text-[1rem] fas  fa-solid fa-rotate-right absolute text-[rgba(156,163,175)]  -translate-y-4 transform transition-all hover:scale-150 hover:text-emerald-500 hover:opacity-80"
+      ></i>
+      <div>
+        <Confetti active={complete} config={config} />
+      </div>
+    </div>
+  ) : (
+    <div
+      className="mx-1 mb-2 mt-1 font-todo p-2 text-3xl font-medium tracking-widest rounded-lg animate-fade-in"
+      style={{
+        backgroundColor: color,
+        border: "2px solid rgba(201, 198, 198, 0.3)",
+      }}
+    >
+      {todo}
+      <i
+        onClick={() => handleDelete(todo)}
+        className="opacity-80 cursor-pointer text-[1rem] fas fa-solid fa-circle-minus absolute text-red-500 -translate-x-5 -translate-y-4 transform transition-all hover:scale-150 hover:text-red-700"
+      ></i>
+      <i
+        onClick={() => {
+          setComplete(true);
+          setFinished(true);
+        }}
+        className="opacity-80 cursor-pointer text-[1rem] fas  fa-solid fa-circle-check absolute text-emerald-500  -translate-y-4 transform transition-all hover:scale-150 hover:text-emerald-700"
+      ></i>
+      <div>
+        <Confetti active={complete} config={config} />
+      </div>
+    </div>
+  );
 }
-
