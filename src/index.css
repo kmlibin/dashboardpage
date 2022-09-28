@@ -2,25 +2,14 @@
 
 @tailwind base;
 @tailwind components;
+
+.inputs {
+    @apply border border-solid border-gray-300 bg-white rounded-md box-border text-gray-500 text-[1em] py-2 px-1 w-[75%];
+}
+
 @tailwind utilities;
 
 html, body {
     min-height: 100%;
     min-width: 100%;
-}
-.App {
- height: 100%;
- width: 100%;
- 
-}
-
-.inputs{
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
-    color: #777;
-    font-size: 1em;
-    padding: 8px 6px;
-    width: 75%;
-  
 }

@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useAuthContext } from "../../hooks/useAuthContext";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+
+//hooks
 import { useSignup } from "../../hooks/useSignup";
 
 export default function Signup() {
@@ -36,13 +37,13 @@ export default function Signup() {
   };
 
   return (
-    <div className="w-[40%] min-h-[50%] rounded-lg my-40 mx-auto text-gray-700 text-body bg-gradient-to-br from-blue-400 to-purple-800 ">
+    <div className="rounded-lg h-full max-w-[65%] mt-[10rem] mx-auto text-gray-700 text-body bg-gradient-to-br from-blue-400 to-purple-800 ">
       <form
-        className="flex flex-col w-[75%] h-[75%] rounded mx-auto bg-[rgba(156,163,175,.4)] py-14"
+        className="flex flex-col w-[65%] h-full rounded m-auto bg-[rgba(156,163,175,.4)] py-14"
         onSubmit={handleSubmit}
       >
         <h2 className="my-4 text-4xl">Sign Up</h2>
-        <label>
+        <label for="email">
           <p className="text-xl">email:</p>
           <input
             className="inputs"
@@ -52,7 +53,7 @@ export default function Signup() {
             required
           />
         </label>
-        <label>
+        <label for="password">
           <p className="text-xl">password:</p>
           <input
             className="inputs"
@@ -62,7 +63,7 @@ export default function Signup() {
             required
           />
         </label>
-        <label>
+        <label for="display name">
           <p className="text-xl">display name:</p>
           <input
             className="inputs"
@@ -74,7 +75,7 @@ export default function Signup() {
             required
           />
         </label>
-        <label>
+        <label for="zipcode">
           <p className="text-xl">weather zipcode:</p>
           <input
             className="inputs"
@@ -87,7 +88,7 @@ export default function Signup() {
             required
           />
         </label>
-        <label>
+        <label for="profile picture">
           <p className="text-xl">profile thumbnail:</p>
           <input
             className="inputs bg-white"

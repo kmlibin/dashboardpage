@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { useLogin } from "../../hooks/useLogin";
 import { Link } from "react-router-dom";
+
+//hooks
+import { useLogin } from "../../hooks/useLogin";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -13,13 +15,13 @@ export default function Login() {
   };
 
   return (
-    <div className="w-[40%] min-h-[50%] rounded-lg my-60 mx-auto text-gray-700 text-body bg-gradient-to-br from-blue-400 to-purple-800 ">
+    <div className="rounded-lg h-[500px] max-w-[65%] mt-[10rem] mx-auto block text-gray-700 text-body bg-gradient-to-br from-blue-400 to-purple-800 ">
       <form
-        className="flex flex-col w-[75%] h-[75%] rounded mx-auto  bg-[rgba(156,163,175,.4)] py-14"
+        className="flex flex-col w-[65%] h-full rounded m-auto  bg-[rgba(156,163,175,.4)] py-14"
         onSubmit={handleSubmit}
       >
         <h2 className="my-4 text-4xl">Login</h2>
-        <label>
+        <label for="email">
           <p className="text-xl">email:</p>
           <input
             className="inputs"
@@ -29,7 +31,7 @@ export default function Login() {
             value={email}
           />
         </label>
-        <label>
+        <label for="password">
           <p className="text-xl">password:</p>
           <input
             className="inputs"

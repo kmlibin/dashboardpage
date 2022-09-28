@@ -1,7 +1,9 @@
+import React, { useState } from "react";
+import { useAuthContext } from "./useAuthContext";
+
+//firebase
 import { auth } from "../firebase/config";
 import { signOut } from "firebase/auth";
-import { useAuthContext } from "./useAuthContext";
-import React, {useState} from 'react'
 
 export const useLogout = () => {
   const [error, setError] = useState(null);

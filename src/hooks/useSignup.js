@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
-import { auth, storage, database } from "../firebase/config";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useAuthContext } from "./useAuthContext";
+
+//firebase
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { collection, setDoc, doc } from "firebase/firestore";
+import { auth, storage, database } from "../firebase/config";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 export const useSignup = () => {
   const [isCancelled, setIsCancelled] = useState(false);
@@ -23,7 +25,6 @@ export const useSignup = () => {
         throw new Error("Could not complete signup");
       }
       // upload thumbnail
-
       const storageRef = ref(
         storage,
         `thumbnails/uid${res.user.uid}/${thumbnail.name}`

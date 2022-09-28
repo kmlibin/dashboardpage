@@ -130,7 +130,7 @@ export default function Home() {
       />
       {documents && <Navbar />}
 
-      {weather && <Weather weather={weather} />}
+      <Weather weather={weather} />
 
       {/* holds search and todos */}
       <div className="font-body flex flex-col items-center my-40">

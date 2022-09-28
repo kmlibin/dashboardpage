@@ -7,18 +7,15 @@ import Login from "./pages/login/Login";
 import Home from "./pages/home/Home";
 
 //styles
-import "./App.css";
+
 import { useAuthContext } from "./hooks/useAuthContext";
 
-
 function App() {
- 
   const { user, authIsReady } = useAuthContext();
-
 
   console.log(user);
   return (
-    <div className="App text-gray-200">
+    <div className="text-gray-200 text-center h-full w-full bg-indigo-100 -z-20 absolute">
       {authIsReady && (
         <BrowserRouter>
           <Routes>
