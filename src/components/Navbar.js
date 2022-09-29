@@ -13,9 +13,9 @@ export default function Navbar() {
   const { logout } = useLogout();
 
   return (
-    <div className="font-body rounded-lg w-1/5 flex flex-col absolute top-2 left-2 bg-grey-rgba shadow-standard">
-      <div className="w-full flex">
-        <div className="w-1/3">
+    <div className="font-body rounded-lg m-1  w-2/3  sm:w-1/3  lg:w-1/4 flex flex-col sm:absolute sm:top-2 sm:left-2 bg-grey-rgba shadow-standard">
+      <div className="flex">
+        <div className="sm:w-1/3 pr-3">
           <Avatar
             src={
               user.photoURL.includes("undefined")
@@ -26,14 +26,20 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center w-2/3 justify-start">
-          <p className="pl-2 text-2xl font-medium">
+          <p className=" text-2xl font-medium">
             Hey {user.displayName}
             {!toggle ? (
-              <button className= "cursor-pointer" onClick={() => setToggle(true)}>
+              <button
+                className="cursor-pointer"
+                onClick={() => setToggle(true)}
+              >
                 <i className="fa-solid fa-caret-down px-2 text-lg"></i>
               </button>
             ) : (
-              <button className= "cursor-pointer" onClick={() => setToggle(false)}>
+              <button
+                className="cursor-pointer"
+                onClick={() => setToggle(false)}
+              >
                 <i className="fa-solid fa-caret-up px-2 text-lg"></i>
               </button>
             )}
@@ -63,5 +69,3 @@ export default function Navbar() {
     </div>
   );
 }
-
-

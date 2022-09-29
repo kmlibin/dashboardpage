@@ -15,9 +15,9 @@ export default function Login() {
   };
 
   return (
-    <div className="rounded-lg h-[500px] max-w-[65%] mt-[10rem] mx-auto block text-gray-700 text-body bg-gradient-to-br from-blue-400 to-purple-800 ">
+    <div className="rounded-lg h-[700px] sm:h-[500px] sm:max-w-[65%] sm:mt-[10rem] mx-auto block text-gray-700 text-body bg-gradient-to-br from-blue-400 to-purple-800 ">
       <form
-        className="flex flex-col w-[65%] h-full rounded m-auto  bg-[rgba(156,163,175,.4)] py-14"
+        className="flex flex-col w-[90%] sm:w-[65%] h-full rounded m-auto  bg-[rgba(156,163,175,.4)] py-14"
         onSubmit={handleSubmit}
       >
         <h2 className="my-4 text-4xl">Login</h2>

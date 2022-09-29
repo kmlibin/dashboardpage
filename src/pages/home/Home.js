@@ -123,7 +123,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-full min-w-full">
+    <main className="flex flex-col sm:min-h-full sm:min-w-full">
       <img
         className="-z-10 absolute min-w-full min-h-full opacity-80"
         src={images[index]}

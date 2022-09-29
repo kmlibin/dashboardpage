@@ -23,7 +23,7 @@ export default function Todos({ todo, color, handleDelete }) {
 
   return finished ? (
     <div
-      className="mx-1 mb-2 mt-1 font-todo p-3 text-3xl font-medium tracking-widest rounded-lg animate-fade-in"
+      className="mx-1 mb-2 mt-1 font-body sm:font-todo p-3 text-xs sm:text-3xl font-medium tracking-widest rounded-lg animate-fade-in"
       style={{
         backgroundColor: "rgba(156,163,175,.5)",
         border: "2px solid rgba(201, 198, 198, 0.3)",
@@ -32,14 +32,14 @@ export default function Todos({ todo, color, handleDelete }) {
       {todo}
       <i
         onClick={() => handleDelete(todo)}
-        className="opacity-80 cursor-pointer text-[1rem] fas fa-solid fa-circle-minus absolute text-[rgba(156,163,175)] -translate-x-5 -translate-y-5 transform transition-all hover:scale-150 hover:text-red-500 hover:opacity-80"
+        className="opacity-80 cursor-pointer sm:text-[1rem] text-[.75rem] fas fa-solid fa-circle-minus absolute text-[rgba(156,163,175)] -translate-x-5 -translate-y-5 transform transition-all hover:scale-150 hover:text-red-500 hover:opacity-80"
       ></i>
       <i
         onClick={() => {
           setComplete(false);
           setFinished(false);
         }}
-        className="opacity-80 cursor-pointer text-[1rem] fas fa-solid fa-rotate-right absolute text-[rgba(156,163,175)] -translate-y-5 transform transition-all hover:scale-150 hover:text-emerald-500 hover:opacity-80"
+        className="opacity-80 cursor-pointer sm:text-[1rem] text-[.75rem] fas fa-solid fa-rotate-right absolute text-[rgba(156,163,175)] -translate-y-5 transform transition-all hover:scale-150 hover:text-emerald-500 hover:opacity-80"
       ></i>
       <div>
         <Confetti active={complete} config={config} />
@@ -47,7 +47,7 @@ export default function Todos({ todo, color, handleDelete }) {
     </div>
   ) : (
     <div
-      className="mx-1 mb-2 mt-1 font-todo p-3 text-3xl font-medium tracking-widest rounded-lg animate-fade-in"
+      className="mx-1 mb-2 mt-1 font-body sm:font-todo p-3 text-xs sm:text-3xl font-medium tracking-widest rounded-lg animate-fade-in"
       style={{
         backgroundColor: color,
         border: "2px solid rgba(201, 198, 198, 0.3)",
@@ -56,14 +56,14 @@ export default function Todos({ todo, color, handleDelete }) {
       {todo}
       <i
         onClick={() => handleDelete(todo)}
-        className="opacity-80 cursor-pointer text-[1rem] fas fa-solid fa-circle-minus absolute text-red-500 -translate-x-5 -translate-y-5 transform transition-all hover:scale-150 hover:text-red-700"
+        className="opacity-80 cursor-pointer sm:text-[1rem] fas fa-solid fa-circle-minus absolute text-red-500 -translate-x-5 -translate-y-5 transform transition-all hover:scale-150 hover:text-red-700"
       ></i>
       <i
         onClick={() => {
           setComplete(true);
           setFinished(true);
         }}
-        className="opacity-80 cursor-pointer text-[1rem] fas  fa-solid fa-circle-check absolute text-emerald-500  -translate-y-5 transform transition-all hover:scale-150 hover:text-emerald-700"
+        className="opacity-80 cursor-pointer sm:text-[1rem] fas  fa-solid fa-circle-check absolute text-emerald-500  -translate-y-5 transform transition-all hover:scale-150 hover:text-emerald-700"
       ></i>
       <div>
         <Confetti active={complete} config={config} />

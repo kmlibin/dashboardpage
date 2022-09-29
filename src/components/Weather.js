@@ -2,9 +2,9 @@ import React from "react";
 
 export default function Weather({ weather }) {
   return (
-    <div className="font-body w-full flex justify-end ">
+    <div className="font-body w-full flex justify-start sm:justify-end ">
       {weather && (
-        <div className="flex animate-fade-in bg-grey-rgba rounded-lg mt-[9%] mx-2 shadow-equal">
+        <div className="flex animate-fade-in bg-grey-rgba rounded-lg  sm:mt-[9%] mx-1 sm:mx-2 shadow-equal">
           <img
             className="min-w-[10%]"
             src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
