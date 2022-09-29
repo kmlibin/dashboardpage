@@ -73,7 +73,7 @@ export default function Home() {
   useEffect(() => {
     const fetchCoordinates = async () => {
       //api endpoint to use zip to get lat and lon
-      const coordinateUrl = `http://api.openweathermap.org/geo/1.0/zip?zip=${zipcode},US&appid=${api}`;
+      const coordinateUrl = `https://api.openweathermap.org/geo/1.0/zip?zip=${zipcode},US&appid=${api}`;
 
       //fetch lat and lon for zipcode conversion
       try {
