@@ -2,7 +2,7 @@
 ## Self-guided React Project 
 
 #### don't want to create an account? use this login info: 
-* email: gato@dev.com
+* email: gato@cat.com
 * pass: test123
 
 This React App is just designed to be a dashboard page - it has an input field where you can write a list of todos, it uses a stored user zipcode to show local weather conditions and it shows a random inspirational quote. These were the general parameters given by Codecademy, but I wanted to practice using Firebase so I added a nav bar up top that shows a stored user image and name. I also used it to store zipcodes, and I ended up using it to store the weather API key.
