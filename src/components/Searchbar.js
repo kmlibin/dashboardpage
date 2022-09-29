@@ -5,7 +5,7 @@ import Todos from "./Todos";
 
 export default function Searchbar({ handleRight, handleLeft }) {
   const [todo, setTodo] = useState("");
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(['water plants', 'make bread', 'do yoga', 'eat cookies']);
 
   const colors = [
     "rgba(7,89,133, .8)",
@@ -29,12 +29,12 @@ export default function Searchbar({ handleRight, handleLeft }) {
 
   return (
     <div className="flex w-full justify-center h-full">
-      <button className="text-white w-1/5 pr-5 text-3xl" onClick={handleLeft}>
+      <button className="text-white w-[10%] sm:w-1/5 sm:pr-5 text-s sm:text-3xl" onClick={handleLeft}>
         <i className="fas fa-solid fa-backward-step shadow-standard rounded-lg p-4 transition-all ease-in duration-100 hover:shadow-[inset_0_0_10px_white] active:shadow-light active:translate-y-1"></i>
       </button>
 
-      <div className="w-2/3 flex flex-col items-center bg-grey-rgba rounded-lg animate-fade-in shadow-equal">
-        <h2 className="text-5xl p-5">What are your goals for today?</h2>
+      <div className="sm:w-2/3 w-5/6 flex flex-col items-center bg-grey-rgba rounded-lg animate-fade-in shadow-equal">
+        <h2 className="sm:text-5xl text-xl p-5">What are your goals for today?</h2>
         <form className="p-5 min-w-full" onClick={addTodo}>
           <label for="goals">
             <input
@@ -61,7 +61,7 @@ export default function Searchbar({ handleRight, handleLeft }) {
           ))}
         </div>
       </div>
-      <button className="text-white text-3xl w-1/5 pl-5 " onClick={handleRight}>
+      <button className="text-white w-[10%] sm:w-1/5 sm:pl-5 text-s sm:text-3xl " onClick={handleRight}>
         <i className="fas fa-solid fa-forward-step shadow-standard p-4 rounded-lg transition-all ease-in duration-100 hover:shadow-[inset_0_0_10px_white] active:shadow-light active:translate-y-1"></i>
       </button>
     </div>
