@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { HashRouter, Route, Routes, Navigate } from "react-router-dom";
 import React from "react";
 
 //pages and components
@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="text-gray-200 text-center h-full w-full bg-indigo-100 -z-20 absolute">
       {authIsReady && (
-        <BrowserRouter>
+        <HashRouter>
           <Routes>
             <Route path="/" element={user ? <Home /> : <Login />} />
             <Route
@@ -29,7 +29,7 @@ function App() {
               element={user ? <Navigate to="/" /> : <Login />}
             />
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       )}
     </div>
   );
