@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# Dashboard Page
+## Self-guided React Project 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#### don't want to create an account? use this login info: 
+* email: gato@dev.com
+* pass: test123
 
-## Available Scripts
+This React App is just designed to be a dashboard page - it has an input field where you can write a list of todos, it uses a stored user zipcode to show local weather conditions and it shows a random inspirational quote. These were the general parameters given by Codecademy, but I wanted to practice using Firebase so I added a nav bar up top that shows a stored user image and name. As I said, I also used it to store zipcodes, and I ended up using it to store the weather API key.
 
-In the project directory, you can run:
+I added icons to each todo, that way you can delete or mark them as complete. Once you've completed something, an option also appears to "redo". Confetti appears when todos are marked complete.
 
-### `npm start`
+You can log in, log out, and sign up to the page. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The page was designed as a dashboard (larger screens), but I quickly went through to give it some basic responsiveness so the elements wouldn't all collapse on each other.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+### Languages / Libraries
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+React, JavaScript, CSS HTML
 
-### `npm run build`
+Firebase, Tailwind, Google Fonts, Font Awesome Icons, React-Dom-Confetti
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Project Highlights
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    1. Styled with Tailwind, got familiar with their classes and added more styles to the config file
+    2. I liked the confetti. It's fun.
+    3. Use of two web APIs
+    4. Fade in animations
+    5. Image backgrounds that you can click through 
+    6. Simple screen-size responsiveness
+    7. Usual React stuff like state, useEffect, useHistory, useParams, react router-dom, forms, redirects
+    8. Lots of custom hooks, such as one for using collections and documents from Firestore, using Auth context, Logging users in and out, and signing users up
+    9. FireBase Auth, Storage, FireStore
+    10. Authentication guards for certain routes
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    
 
-### `npm run eject`
+### What I learned / Challenges
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+This was my first time using Tailwind - initially, I was like "this takes so much longer!", but my mind was definitely changed by the end of the project. It certainly makes it quicker to get a page up and running, so I would definitely use it again. However, I only addressed responsive screen size at the end of the project, and I think it would be easier to do that as you're writing the initial styles.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+I got more practice with Firebase, which was what I wanted as well. I had to re-write some hooks to accommodate Firebase 9, and that was helpful because it gave me a better understanding of how the new methods worked. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Things to add:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    1. I would like to add parameters/error messages to the input fields (i.e, passwords must be 6 characters, user names no more than 10 characters). I have a regex for 5 digit zipcodes as well, but it only works for U.S. codes. It would be good to expand it so that it can accommodate other types of zipcodes.
+    2. A higher level of screen size responsiveness...again, wasn't necessarily designed for phones, but there are still more things that can be done so it looks nicer on smaller screens.
+    3. I'd like to set it up so that the todo's are stored in Firebase, that way each user can save their own lists. 
+    4. I want to add an "Account Settings" page - right now, I have the link in the navbar but it isn't functional. In that settings page, I want to be able to change the zipcode, profile pic, and (if firebase allows) a place to change the username and password. 
+    5. In the todo section, it might be nice to have it split into two parts - a "completed" and "finished" section. 
