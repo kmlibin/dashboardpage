@@ -1,6 +1,8 @@
 # Dashboard Page
 ## Self-guided React Project 
 
+gh-deployment: https://kmlibin.github.io/dashboardpage/
+
 #### don't want to create an account? use this login info: 
 * email: gato@cat.com
 * pass: test123
