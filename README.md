@@ -1,8 +1,10 @@
 # Dashboard Page
 ## Self-guided React Project 
 
+gh-deployment: https://kmlibin.github.io/dashboardpage/
+
 #### don't want to create an account? use this login info: 
-* email: gato@dev.com
+* email: gato@cat.com
 * pass: test123
 
 This React App is just designed to be a dashboard page - it has an input field where you can write a list of todos, it uses a stored user zipcode to show local weather conditions and it shows a random inspirational quote. These were the general parameters given by Codecademy, but I wanted to practice using Firebase so I added a nav bar up top that shows a stored user image and name. I also used it to store zipcodes, and I ended up using it to store the weather API key.
@@ -43,8 +45,16 @@ I got more practice with Firebase, which was what I wanted as well. I had to re-
 
 ### Things to add:
 
-    1. I would like to add parameters/error messages to the input fields (i.e, passwords must be 6 characters, user names no more than 10 characters). I have a regex for 5 digit zipcodes as well, but it only works for U.S. codes. It would be good to expand it so that it can accommodate other types of zipcodes.
-    2. A higher level of screen size responsiveness...again, wasn't necessarily designed for phones, but there are still more things that can be done so it looks nicer on smaller screens.
+    1. I would like to add parameters/error messages to the input fields (i.e, passwords must be 6 characters, 
+    user names no more than 10 characters). I have a regex for 5 digit zipcodes as well, but it only works for U.S. codes.
+    It would be good to expand it so that it can accommodate other types of zipcodes.
+    
+    2. A higher level of screen size responsiveness...again, wasn't necessarily designed for phones, but there are still 
+    more things that can be done so it looks nicer on smaller screens.
+    
     3. I'd like to set it up so that the todo's are stored in Firebase, that way each user can save their own lists. 
-    4. I want to add an "Account Settings" page - right now, I have the link in the navbar but it isn't functional. In that settings page, I want to be able to change the zipcode, profile pic, and (if firebase allows) a place to change the username and password. 
-    5. In the todo section, it might be nice to have it split into two parts - a "completed" and "finished" section. 
+    
+    4. I want to add an "Account Settings" page - right now, I have the link in the navbar but it isn't functional. 
+    In that settings page, I want to be able to change the zipcode, profile pic, and (if firebase allows) a place to change the username and password. 
+    
+    5. In the todo section, it might be nice to have it split into two parts - a "to be completed" and "finished" section. 
