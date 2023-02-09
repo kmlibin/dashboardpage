@@ -123,11 +123,11 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex flex-col sm:min-h-full sm:min-w-full">
-      <img
-        className="-z-10 absolute min-w-full min-h-full opacity-80"
-        src={images[index]}
-      />
+    <main className="flex flex-col bg-cover bg-center sm:min-h-full sm:min-w-full"
+    
+    style={{backgroundImage:`url(${images[index]})`}}>
+    
+      
       {documents && <Navbar />}
 
       <Weather weather={weather} />
