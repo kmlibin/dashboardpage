@@ -21,6 +21,7 @@ export default function Login() {
         onSubmit={handleSubmit}
       >
         <h2 className="my-4 text-4xl">Login</h2>
+        <p>user : gato@dev.com   pass: test123</p>
         <label for="email">
           <p className="text-xl">email:</p>
           <input
