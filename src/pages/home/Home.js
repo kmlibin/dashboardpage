@@ -40,15 +40,13 @@ export default function Home() {
   const { documents } = useCollection("users", ["uid", "==", user.uid]);
   const { documents: weatherKey } = useCollection("api");
 
-
   // update zipcode; check for documents and make sure that documents doesn't return as "undefined"
   useMemo(() => {
     const newZip = documents && documents[0].zip ? documents[0].zip : null;
     setZipcode(newZip);
   }, [documents, user]);
 
-  let api = weatherKey && weatherKey[0].key ? weatherKey[0].key : null;
-
+     let api = weatherKey && weatherKey[0].key ? weatherKey[0].key : null; 
   //handle next button click on background image
   const handleRight = (e) => {
     e.preventDefault();
@@ -73,7 +71,7 @@ export default function Home() {
   useEffect(() => {
     const fetchCoordinates = async () => {
       //api endpoint to use zip to get lat and lon
-      const coordinateUrl = `https://api.openweathermap.org/geo/1.0/zip?zip=${zipcode},US&appid=${api}`;
+      const coordinateUrl = `https://api.openweathermap.org/geo/1.0/zip?zip=80919,US&appid=0a430b4c9cea94f2ec8d3907dec15777`;
 
       //fetch lat and lon for zipcode conversion
       try {
@@ -90,7 +88,6 @@ export default function Home() {
       //use latitude and longitude to get weather
       try {
         const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=0a430b4c9cea94f2ec8d3907dec15777&units=imperial`;
-        console.log(weatherUrl);
         const response = await fetch(weatherUrl);
         if (response.status === 200) {
           const jsonResponse = await response.json();
