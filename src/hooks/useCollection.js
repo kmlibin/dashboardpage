@@ -12,15 +12,22 @@ export const useCollection = (coll, _q) => {
 
   useEffect(() => {
     let ref = collection(database, coll);
+  
     if (q) {
       ref = query(ref, where(...q));
     }
     const unsub = onSnapshot(ref, (snapshot) => {
-      let results = [];
+
+      try {
+ let results = [];
       snapshot.docs.forEach((doc) => {
         results.push({ ...doc.data(), id: doc.id });
       });
-      setDocuments(results);
+ setDocuments(results);
+      }catch (error) {
+        console.log(error("Error fetching from firestore", error))
+      }
+     
     });
 
     return () => unsub();
