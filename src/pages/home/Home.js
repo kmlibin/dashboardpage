@@ -31,6 +31,14 @@ export default function Home() {
   const { documents: weatherKey } = useCollection("api");
 
 
+//preload images
+  useEffect(() => {
+    images.forEach((image) => {
+      const img = new Image();
+      img.src = image.path;
+    });
+  }, [images]);
+  
   // update zipcode; check for documents and make sure that documents doesn't return as "undefined"
   useMemo(() => {
     const newZip = documents && documents[0].zip ? documents[0].zip : null;
