@@ -8,17 +8,6 @@ import Quote from "../../components/Quote";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useCollection } from "../../hooks/useCollection";
 
-//grab background images
-
-const img1 = require("../../images/img1.jpg");
-const img2 = require("../../images/img2.jpg");
-const img3 = require("../../images/img3.jpg");
-const img4 = require("../../images/img4.jpg");
-const img5 = require("../../images/img5.jpg");
-const img6 = require("../../images/img6.jpg");
-const img7 = require("../../images/img7.jpg");
-const img8 = require("../../images/img8.jpg");
-
 export default function Home() {
   const [latitude, setLatitude] = useState("");
   const [longitude, setLongitude] = useState("");
@@ -26,19 +15,21 @@ export default function Home() {
   const [zipcode, setZipcode] = useState(99703);
   const [weather, setWeather] = useState();
   const [index, setIndex] = useState(0);
-  const [images, setImages] = useState([
-    img1,
-    img2,
-    img3,
-    img4,
-    img5,
-    img6,
-    img7,
-    img8,
+  const [images, setImages] = useState( [
+    { path: require("../../images/img1.jpg") },
+    { path: require("../../images/img2.jpg") },
+    { path: require("../../images/img3.jpg") },
+    { path: require("../../images/img4.jpg") },
+    { path: require("../../images/img5.jpg") },
+    { path: require("../../images/img6.jpg") },
+    { path: require("../../images/img7.jpg") },
+    { path: require("../../images/img8.jpg") },
+    
   ]);
   const { user } = useAuthContext();
   const { documents } = useCollection("users", ["uid", "==", user.uid]);
   const { documents: weatherKey } = useCollection("api");
+
 
   // update zipcode; check for documents and make sure that documents doesn't return as "undefined"
   useMemo(() => {
@@ -46,32 +37,26 @@ export default function Home() {
     setZipcode(newZip);
   }, [documents, user]);
 
-     let api = weatherKey && weatherKey[0].key ? weatherKey[0].key : null; 
-  //handle next button click on background image
-  const handleRight = (e) => {
-    e.preventDefault();
-    if (index > images.length - 2) {
-      setIndex(0);
-      console.log("start over");
-    } else {
-      setIndex(index + 1);
-    }
+  let api = weatherKey && weatherKey[0].key ? weatherKey[0].key : null;
+
+
+//handle previous slide
+  const prevSlide = () => {
+    const isFirstSlide = index === 0;
+    const newIndex = isFirstSlide ? images.length - 1 : index - 1;
+    setIndex(newIndex);
   };
-  //handle previous button click on background image
-  const handleLeft = (e) => {
-    e.preventDefault();
-    if (index === 0) {
-      setIndex(7);
-      console.log("start over");
-    } else {
-      setIndex(index - 1);
-    }
+  //handle next button click on background image
+  const nextSlide = () => {
+    const isLastSlide = index === images.length - 1;
+    const newIndex = isLastSlide ? 0 : index + 1;
+    setIndex(newIndex);
   };
 
   useEffect(() => {
     const fetchCoordinates = async () => {
       //api endpoint to use zip to get lat and lon
-      const coordinateUrl = `https://api.openweathermap.org/geo/1.0/zip?zip=80919,US&appid=0a430b4c9cea94f2ec8d3907dec15777`;
+      const coordinateUrl = `https://api.openweathermap.org/geo/1.0/zip?zip=${zipcode},US&appid=${api}`;
 
       //fetch lat and lon for zipcode conversion
       try {
@@ -119,19 +104,21 @@ export default function Home() {
     fetchQuote();
   }, []);
 
+
+
   return (
-    <main className="flex flex-col bg-cover bg-center sm:min-h-full sm:min-w-full"
-    
-    style={{backgroundImage:`url(${images[index]})`}}>
-    
-      
+    <main
+      className=" slide flex flex-col bg-cover bg-center sm:min-h-full sm:min-w-full w-full h-full duration-500"
+
+      style={{ backgroundImage: `url(${images[index].path})` }}
+    >
       {documents && <Navbar />}
 
       <Weather weather={weather} />
 
       {/* holds search and todos */}
       <div className="font-body flex flex-col items-center my-40">
-        <Searchbar handleRight={handleRight} handleLeft={handleLeft} />
+        <Searchbar handleRight={nextSlide} handleLeft={prevSlide} />
       </div>
 
       {/* holds quotes*/}
